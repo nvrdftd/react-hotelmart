@@ -1,0 +1,281 @@
+.Sidebar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 30px;
+  padding: 10px;
+  background-color: #ffabab;
+  display: flex;
+  z-index: 1;
+}
+
+[alt=ShopCart] {
+  position: absolute;
+  right: 10px;
+}
+
+[alt=Search] {
+  position: absolute;
+  right: 50px;
+}
+
+[alt=AddItem] {
+  align-self: flex-end;
+}
+
+
+.Headline {
+  position: absolute;
+  left: 10px;
+  font-size: 30px;
+  font-family: 'Dosis', sans-serif;
+  line-height: 30px;
+  text-align: center;
+  color: #494a4a;
+}
+
+.SelectQuantity {
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #494a4a;
+  font-size: 10px;
+  color: #494a4a;
+}
+
+.Recommended {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Cart {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+.Search input {
+  margin: 10px;
+  border-radius: 5px;
+  border: 1.5px solid #acacac;
+  width: 200px;
+  padding: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.Search input:focus {
+  border-color: #000000;
+  transition: all 1s;
+}
+
+.CheckoutButton {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-family: 'Dosis', sans-serif;
+  justify-content: center;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.Checkout {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-family: 'Dosis', sans-serif;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.Payment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Dosis', sans-serif;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.Payment img {
+  margin: 10px;
+}
+
+.Payment form {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.Payment input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #acacac;
+  width: 200px;
+  padding: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.Payment input:focus {
+  border-color: #000000;
+  transition: all 1s;
+}
+
+.Payment [type=submit] {
+  width: 100px;
+  align-self: center;
+  background-color: #ffffff;
+}
+
+.Login {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Dosis', sans-serif;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.Login img {
+  margin: 10px;
+}
+
+.Login form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Login input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #acacac;
+  width: 200px;
+  padding: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.Login input:focus {
+  border-color: #000000;
+  transition: all 1s;
+}
+
+.Login [type=submit] {
+  width: 100px;
+  align-self: center;
+  background-color: #ffffff;
+}
+
+.loginform-enter {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.loginform-enter.loginform-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s;
+}
+
+.NeedAccount, .LoginExplain {
+  width: 200px;
+  font-size: 12px;
+  text-align: center;
+  align-self: center;
+}
+.LoginErr {
+  width: 200px;
+  font-size: 12px;
+  text-align: center;
+  align-self: center;
+  color: #ff005c;
+}
+
+.selectedItem-enter {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.selectedItem-enter.selectedItem-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 1s;
+}
+
+.selectedItem-leave {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.selectedItem-leave.selectedItem-leave-active {
+  opacity: 0;
+  transform: translateX(300px);
+  transition: all 1s;
+}
+
+.item-enter {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.item-enter.item-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 2s;
+}
+
+.Item {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 12px;
+  font-family: 'Dosis', sans-serif;
+  background-color: #8cbebe;
+  border-radius: 5px;
+  color: #000000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Item section {
+  margin-left: 20px;
+}
+
+.Category {
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 14px;
+  font-family: 'Dosis', sans-serif;
+  background-color: #8cbe9e;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
