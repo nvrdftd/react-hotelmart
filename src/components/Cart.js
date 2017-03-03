@@ -14,7 +14,7 @@ class Cart extends Component {
       isAuthenticated: false,
       isCheckoutToggled: false,
       buttonStatus: 'Log In',
-      operationStatus: '',
+      operationStatus: 'Cart is empty!',
       items: [],
       err: ''
     }
@@ -37,8 +37,12 @@ class Cart extends Component {
 
   componentDidMount() {
     let currentState = this.state;
-    currentState.items = JSON.parse(sessionStorage.getItem('cart')) || [];
-    this.setState(currentState);
+    request.get('http://localhost:3500/user/cart')
+      .withCredentials()
+      .then(res => {
+        currentState.items = res.body;
+        this.setState(currentState);
+      });
   }
 
   handleChange(event) {
