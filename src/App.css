@@ -1,3 +1,7 @@
+.App {
+  font-family: 'Dosis', sans-serif;
+}
+
 .Sidebar {
   position: fixed;
   left: 0;
@@ -8,6 +12,21 @@
   background-color: #ffabab;
   display: flex;
   z-index: 1;
+}
+
+.numOfItem {
+  position: fixed;
+  top: 2px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #037d5b;
+  color: #ffffff;
+  z-index: 5;
 }
 
 [alt=ShopCart] {
@@ -29,7 +48,6 @@
   position: absolute;
   left: 10px;
   font-size: 30px;
-  font-family: 'Dosis', sans-serif;
   line-height: 30px;
   text-align: center;
   color: #494a4a;
@@ -57,9 +75,9 @@
 
 .Search {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
   margin-top: 60px;
 }
 
@@ -82,6 +100,10 @@
   transition: all 1s;
 }
 
+.Search.CategoryList {
+  width: 200px;
+}
+
 .CheckoutButton {
   position: fixed;
   left: 0;
@@ -89,7 +111,6 @@
   bottom: 0;
   display: flex;
   align-items: center;
-  font-family: 'Dosis', sans-serif;
   justify-content: center;
   background-color: #ffffff;
   border-top: 1px solid #e0e0e0;
@@ -102,32 +123,22 @@
   right: 0;
   bottom: 0;
   display: flex;
-  align-items: center;
-  font-family: 'Dosis', sans-serif;
-  justify-content: center;
-  background-color: #ffffff;
-}
-
-.Payment {
-  display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Dosis', sans-serif;
   justify-content: center;
-  background-color: #ffffff;
 }
 
-.Payment img {
+.Checkout img {
   margin: 10px;
 }
 
-.Payment form {
+.Checkout form {
   display: flex;
   flex-direction: column;
 
 }
 
-.Payment input {
+.Checkout input {
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -138,23 +149,26 @@
   outline: none;
 }
 
-.Payment input:focus {
+.Checkout input:focus {
   border-color: #000000;
   transition: all 1s;
 }
 
-.Payment [type=submit] {
+.Checkout [type=submit] {
   width: 100px;
   align-self: center;
   background-color: #ffffff;
 }
 
 .Login {
-  margin-top: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Dosis', sans-serif;
   justify-content: center;
 }
 
@@ -211,30 +225,29 @@
   cursor: pointer;
 }
 
-.LoginErr {
+.LoginErr, .SignupErr {
   width: 200px;
   font-size: 12px;
   align-self: center;
   color: #ff005c;
 }
 
-.SignupForm {
+.Signup {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Dosis', sans-serif;
 }
 
-.SignupForm form {
+.Signup form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   font-size: 12px;
 }
 
-.SignupForm input {
+.Signup input {
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -245,18 +258,18 @@
   outline: none;
 }
 
-.SignupForm input:focus {
+.Signup input:focus {
   border-color: #000000;
   transition: all 1s;
 }
 
-.SignupForm [type=submit] {
+.Signup [type=submit] {
   width: 100px;
   align-self: center;
   background-color: #ffffff;
 }
 
-.SignupForm [type=button] {
+.Signup [type=button] {
   width: 100px;
   align-self: center;
   background-color: #ffffff;
@@ -299,7 +312,6 @@
   margin-bottom: 10px;
   padding: 10px;
   font-size: 12px;
-  font-family: 'Dosis', sans-serif;
   background-color: #8cbebe;
   border-radius: 5px;
   color: #000000;
@@ -320,9 +332,19 @@
   text-align: center;
   line-height: 100px;
   font-size: 14px;
-  font-family: 'Dosis', sans-serif;
   background-color: #bea88c;
   border-radius: 5px;
   box-sizing: border-box;
   color: #ffffff;
+}
+
+.categorylist-enter {
+  opacity: 0;
+  transform: rotateY(45deg);
+}
+
+.categorylist-enter.categorylist-enter-active {
+  opacity: 1;
+  transform: rotateY(0);
+  transition: all 2s;
 }

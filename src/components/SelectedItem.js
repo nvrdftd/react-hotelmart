@@ -11,7 +11,9 @@ class SelectedItem extends Component {
           <section>
             {this.props.item.category}
           </section>
-          <SelectQuantity _id={this.props.item._id} quantity={this.props.item.quantity} handleChange={this.props.handleChange}/>
+          <SelectQuantity _id={this.props.item._id}
+                          quantity={this.props.item.quantity}
+                          handleItemChange={this.props.handleItemChange} />
       </div>
     );
   }

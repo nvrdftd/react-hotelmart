@@ -41,6 +41,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {sessionStorage.setItem('cart', JSON.stringify([]))}
         <Sidebar handleClick={this.handleClick}/>
         <Carousel isCartToggled={this.state.isCartToggled}
                   isSearchToggled={this.state.isSearchToggled}/>

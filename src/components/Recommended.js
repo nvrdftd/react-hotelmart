@@ -16,7 +16,7 @@ class Recommended extends Component {
       .withCredentials()
       .then(res => {
         this.setState({
-          items: res.body
+          items: res.body.items
         });
       });
   }
@@ -28,7 +28,9 @@ class Recommended extends Component {
           transitionName="item"
           transitionEnterTimeout={2000}
           transitionLeave={false}>
-          {this.state.items.map(item => <Item key={item._id} item={item} />)}
+          {this.state.items.map(item => <Item key={item._id}
+                                              item={item}
+                                              handleAddItem={this.props.handleAddItem} />)}
         </ReactCSSTransitionGroup>
       </div>
     );
