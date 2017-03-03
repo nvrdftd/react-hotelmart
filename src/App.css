@@ -74,7 +74,6 @@
 }
 
 .Search {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -215,6 +214,17 @@
   transition: all 1s;
 }
 
+.loginform-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loginform-leave.loginform-leave-active {
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: all 1s;
+}
+
 .NeedAccount, .LoginExplain {
   margin: 10px;
   width: 200px;
@@ -277,7 +287,7 @@
 
 .selectedItem-enter {
   opacity: 0;
-  transform: translateX(-100px);
+  transform: translateY(-100px);
 }
 
 .selectedItem-enter.selectedItem-enter-active {
@@ -293,7 +303,7 @@
 
 .selectedItem-leave.selectedItem-leave-active {
   opacity: 0;
-  transform: translateX(300px);
+  transform: translateX(200px);
   transition: all 1s;
 }
 

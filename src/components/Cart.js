@@ -10,6 +10,7 @@ class Cart extends Component {
     super(props);
     this.state = {
       isCheckoutToggled: false,
+      cart: []
     }
     this.handleClick = this.handleClick.bind(this);
     this.showWhichComponent = this.showWhichComponent.bind(this);
@@ -25,6 +26,12 @@ class Cart extends Component {
     this.setState(nextState);
   }
 
+  componentDidMount() {
+    let nextState = this.state;
+    nextState.cart = this.props.cart;
+    this.setState(nextState);
+  }
+
   showWhichComponent() {
     if (this.props.isAuthenticated) {
       if (this.state.isCheckoutToggled) {
@@ -33,7 +40,7 @@ class Cart extends Component {
             <ReactCSSTransitionGroup
               transitionName="loginform"
               transitionEnterTimeout={1000}
-              transitionLeave={false}>
+              transitionLeaveTimeout={1000}>
               <Checkout />
             </ReactCSSTransitionGroup>
             <div className="CheckoutButton" onClick={this.handleClick}>
@@ -48,7 +55,7 @@ class Cart extends Component {
               transitionName="selectedItem"
               transitionEnterTimeout={1000}
               transitionLeaveTimeout={1000}>
-              {this.props.cart.map(item => <SelectedItem key={item._id} item={item} handleItemChange={this.props.handleItemChange}/>)}
+              {this.state.cart.map(item => <SelectedItem key={item._id} item={item} handleItemChange={this.props.handleItemChange}/>)}
             </ReactCSSTransitionGroup>
             <div className="CheckoutButton" onClick={this.handleClick}>
               <span>Checkout</span><img src={checkout_icon} alt="Checkout" width="25px"/>

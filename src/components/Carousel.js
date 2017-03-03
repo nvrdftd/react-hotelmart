@@ -173,7 +173,7 @@ class Carousel extends Component {
           cart.splice(i, 1);
         }
         nextState.cart = cart;
-
+        this.setState(nextState);
         if (this.state.isAuthenticated) {
           request.post(API_ENDPOINT + '/user/cart/update')
             .withCredentials()
@@ -182,11 +182,9 @@ class Carousel extends Component {
               nextState.opStatus = res.body.opStatus;
               this.setState(nextState);
             });
-        } else {
-          this.setState(nextState);
         }
+        break;
       }
-      break;
     }
   }
 
