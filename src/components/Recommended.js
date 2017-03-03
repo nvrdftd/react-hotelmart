@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Item from './Item';
+import API_ENDPOINT from '../config';
 
 class Recommended extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Recommended extends Component {
   }
 
   componentDidMount() {
-    request.get('http://localhost:3500/product/recommended')
+    request.get(API_ENDPOINT + '/product/recommended')
       .withCredentials()
       .then(res => {
         this.setState({

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SelectQuantity from './SelectQuantity';
+import add_icon from '../add-01.png';
+import product_icon from '../product-icon.png';
 
 class Item extends Component {
   constructor(props) {
@@ -27,14 +29,14 @@ class Item extends Component {
   render() {
     return (
       <div className="Item">
-        <img src="../product-icon.png" alt='ProductIcon' width="80" height="80"/>
+        <img src={product_icon} alt='ProductIcon' width="80" height="80"/>
         <section>{this.props.item.name}</section>
         <section>
           {this.props.item.category}
         </section>
           <SelectQuantity quantity={this.state.quantity}
                           handleItemChange={this.handleItemChange} />
-        <img src="../add-01.png"
+        <img src={add_icon}
              alt='AddItem'
              width="20"
              height="20"

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Signup from './Signup'
+import Signup from './Signup';
+import login_icon from '../login-01.png';
 
 class Login extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Login extends Component {
     } else {
       return (
         <div className="Login">
-          <img src="../login-01.png" alt="Login" width="50"/>
+          <img src={login_icon} alt="Login" width="50"/>
           <section className="LoginExplain">
             This will help you shop everywhere anytime, even with different devices.
           </section>

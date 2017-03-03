@@ -3,6 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SelectedItem from './SelectedItem';
 import Checkout from './Checkout';
 import Login from './Login';
+import checkout_icon from '../checkout-01.png'
 
 class Cart extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Cart extends Component {
               <Checkout />
             </ReactCSSTransitionGroup>
             <div className="CheckoutButton" onClick={this.handleClick}>
-              <span>Checkout</span><img src="../checkout-01.png" alt="Checkout" width="25px"/>
+              <span>Checkout</span><img src={checkout_icon} alt="Checkout" width="25px"/>
             </div>
           </div>
         );
@@ -50,7 +51,7 @@ class Cart extends Component {
               {this.props.cart.map(item => <SelectedItem key={item._id} item={item} handleItemChange={this.props.handleItemChange}/>)}
             </ReactCSSTransitionGroup>
             <div className="CheckoutButton" onClick={this.handleClick}>
-              <span>Checkout</span><img src="../checkout-01.png" alt="Checkout" width="25px"/>
+              <span>Checkout</span><img src={checkout_icon} alt="Checkout" width="25px"/>
             </div>
           </div>
         );
@@ -76,7 +77,7 @@ class Cart extends Component {
                    signupStatus={this.props.signupStatus} />
           </ReactCSSTransitionGroup>
           <div className="CheckoutButton" onClick={this.handleClick}>
-            <span>Checkout</span><img src="../checkout-01.png" alt="Checkout" width="25px"/>
+            <span>Checkout</span><img src={checkout_icon} alt="Checkout" width="25px"/>
           </div>
         </div>
       );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Category from './Category';
+import API_ENDPOINT from '../config';
 
 class Search extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Search extends Component {
 
   componentDidMount() {
     let currentStatus = this.state;
-    request.get('http://localhost:3500/categorylist')
+    request.get(API_ENDPOINT + '/categorylist')
       .withCredentials()
       .then(res => {
         currentStatus.categorylist = res.body;

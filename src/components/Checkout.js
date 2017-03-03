@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import shoppingcart_checkout_icon from '../shoppingcart_checkout.png';
 
 class Checkout extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Checkout extends Component {
   render() {
     return (
       <div className="Checkout">
-        <img src="../shoppingcart_checkout.png" alt="Checkout" width="50"/>
+        <img src={shoppingcart_checkout_icon} alt="Checkout" width="50"/>
         <form onChange={this.handleChange}>
           <label>Home Address</label>
           <input type="text" name="homeAddress" pattern="[A-Za-z0-9,.]" required autoFocus/>

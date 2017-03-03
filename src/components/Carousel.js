@@ -3,6 +3,7 @@ import request from 'superagent';
 import Recommended from './Recommended';
 import Cart from './Cart';
 import Search from './Search';
+import API_ENDPOINT from '../config';
 
 class Carousel extends Component {
   constructor(props) {
@@ -31,12 +32,12 @@ class Carousel extends Component {
 
   componentDidMount() {
     let nextState = this.state;
-    request.get('http://localhost:3500/user/session')
+    request.get(API_ENDPOINT + '/user/session')
       .withCredentials()
       .then(res => {
         nextState.isAuthenticated = res.body.isAuthenticated;
         if (nextState.isAuthenticated) {
-          request.get('http://localhost:3500/user/cart/retrieve')
+          request.get(API_ENDPOINT + '/user/cart/retrieve')
             .withCredentials()
             .then(res => {
               nextState.cart = res.body.cart;
@@ -63,7 +64,7 @@ class Carousel extends Component {
     event.preventDefault();
     nextState.signupStatus = 'Processing';
     this.setState(nextState);
-    request.post('http://localhost:3500/user/register')
+    request.post(API_ENDPOINT + '/user/register')
       .withCredentials()
       .send({ username, password, firstname, lastname, home_address })
       .then(res => {
@@ -74,7 +75,7 @@ class Carousel extends Component {
         nextState.fisrtname = '';
         nextState.lastname = '';
         nextState.signupStatus = 'Sign up';
-        request.post('http://localhost:3500/user/cart/update')
+        request.post(API_ENDPOINT + '/user/cart/update')
           .withCredentials()
           .send({ cart: nextState.cart })
           .then(res => {
@@ -98,14 +99,14 @@ class Carousel extends Component {
     nextState.loginStatus = 'Authenticating';
     this.setState(nextState);
 
-    request.post('http://localhost:3500/user/login')
+    request.post(API_ENDPOINT + '/user/login')
       .withCredentials()
       .send({ username, password })
       .then(res => {
         nextState.isAuthenticated = res.body.isAuthenticated;
         nextState.loginErr = '';
         nextState.loginStatus = 'Log In';
-        request.post('http://localhost:3500/user/cart/update')
+        request.post(API_ENDPOINT + '/user/cart/update')
           .withCredentials()
           .send(nextState.cart)
           .then(res => {
@@ -148,7 +149,7 @@ class Carousel extends Component {
         }
       }
       nextState.cart = cart;
-      request.post('http://localhost:3500/user/cart/update')
+      request.post(API_ENDPOINT + '/user/cart/update')
         .withCredentials()
         .send({ cart: nextState.cart })
         .then(res => {
@@ -174,7 +175,7 @@ class Carousel extends Component {
         nextState.cart = cart;
 
         if (this.state.isAuthenticated) {
-          request.post('http://localhost:3500/user/cart/update')
+          request.post(API_ENDPOINT + '/user/cart/update')
             .withCredentials()
             .send({ cart: nextState.cart })
             .then(res => {
