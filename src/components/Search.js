@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import request from 'superagent';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactTransitionGroup from 'react-addons-css-transition-group';
 import Category from './Category';
 import API_ENDPOINT from '../config';
 
@@ -34,15 +34,17 @@ class Search extends Component {
   render() {
     return (
       <div className="Search">
-        <ReactCSSTransitionGroup
-          transitionName="categorylist"
-          transitionEnterTimeout={2000}
-          transitionLeave={false}>
-          <form onChange={this.handleChange}>
-            <input type="text" name="query" placeholder="Search"/>
-          </form>
-          {this.state.categorylist.map(category => <Category key={category._id} category={category} />)}
-        </ReactCSSTransitionGroup>
+        <form onChange={this.handleChange}>
+          <input type="text" name="query" placeholder="Search"/>
+        </form>
+        <div>
+          <ReactTransitionGroup component="div"
+                                transitionName="categorylist"
+                                transitionEnterTimeout={2000}
+                                transitionLeave={false}>
+                                {this.state.categorylist.map(category => <Category key={category._id} category={category} />)}
+          </ReactTransitionGroup>
+        </div>
       </div>
     );
   }

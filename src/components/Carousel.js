@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactTransitionGroup from 'react-addons-css-transition-group';
 import request from 'superagent';
 import Recommended from './Recommended';
 import Cart from './Cart';
@@ -205,7 +206,20 @@ class Carousel extends Component {
                     loginErr={this.state.loginErr}
                     signupErr={this.state.signupErr} />);
     } else if (this.props.isSearchToggled) {
-      return (<Search />);
+      function firstChild(props) {
+        const childrenArr = React.Children.toArray(props.children);
+        return childrenArr[0];
+      }
+      return (
+        <ReactTransitionGroup component={firstChild}
+                              transitionName="search-panel"
+                              transitionAppear={true}
+                              transitionEnter={false}
+                              transitionAppearTimeout={1000}
+                              transitionLeaveTimeout={1000}>
+          <Search />
+        </ReactTransitionGroup>
+      );
     }
     return (<Recommended handleAddItem={this.handleAddItem}/>);
   }
