@@ -26,19 +26,13 @@ class Cart extends Component {
     this.setState(nextState);
   }
 
-  componentDidMount() {
-    let nextState = this.state;
-    nextState.cart = this.props.cart;
-    this.setState(nextState);
-  }
-
   showWhichComponent() {
     if (this.props.isAuthenticated) {
       if (this.state.isCheckoutToggled) {
         return (
           <div className="Cart">
             <ReactCSSTransitionGroup
-              transitionName="loginform"
+              transitionName="form"
               transitionEnterTimeout={1000}
               transitionLeaveTimeout={1000}>
               <Checkout />
@@ -53,9 +47,11 @@ class Cart extends Component {
           <div className="Cart">
             <ReactCSSTransitionGroup
               transitionName="selectedItem"
-              transitionEnterTimeout={1000}
+              transitionAppear={true}
+              transitionEnter={false}
+              transitionAppearTimeout={1000}
               transitionLeaveTimeout={1000}>
-              {this.state.cart.map(item => <SelectedItem key={item._id} item={item} handleItemChange={this.props.handleItemChange}/>)}
+              {this.props.cart.map(item => <SelectedItem key={item._id} item={item} handleItemChange={this.props.handleItemChange}/>)}
             </ReactCSSTransitionGroup>
             <div className="CheckoutButton" onClick={this.handleClick}>
               <span>Checkout</span><img src={checkout_icon} alt="Checkout" width="25px"/>
@@ -67,8 +63,10 @@ class Cart extends Component {
       return (
         <div className="Cart">
           <ReactCSSTransitionGroup
-            transitionName="loginform"
-            transitionEnterTimeout={1000}
+            transitionName="form"
+            transitionAppear={true}
+            transitionAppearTimeout={1000}
+            transitionEnter={false}
             transitionLeave={false}>
             <Login handleCredentials={this.props.handleCredentials}
                    handleUserLogin={this.props.handleUserLogin}

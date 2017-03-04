@@ -74,15 +74,14 @@
 }
 
 .Search {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .Search form {
-  margin: 10px;
-  align-self: center;
+  margin: 5px;
 }
 
 .Search input {
@@ -97,10 +96,6 @@
 .Search input:focus {
   border-color: #000000;
   transition: all 1s;
-}
-
-.Search.CategoryList {
-  width: 200px;
 }
 
 .CheckoutButton {
@@ -203,23 +198,34 @@
   background-color: #ffffff;
 }
 
-.loginform-enter {
+.form-appear {
   opacity: 0;
   transform: translateY(50px);
 }
 
-.loginform-enter.loginform-enter-active {
+.form-appear.form-appear-active {
   opacity: 1;
   transform: translateY(0);
   transition: all 1s;
 }
 
-.loginform-leave {
+.form-enter {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.form-enter.form-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s;
+}
+
+.form-leave {
   opacity: 1;
   transform: translateY(0);
 }
 
-.loginform-leave.loginform-leave-active {
+.form-leave.form-leave-active {
   opacity: 0;
   transform: translateY(-100px);
   transition: all 1s;
@@ -284,12 +290,12 @@
   background-color: #ffffff;
 }
 
-.selectedItem-enter {
+.selectedItem-appear {
   opacity: 0;
   transform: translateY(-100px);
 }
 
-.selectedItem-enter.selectedItem-enter-active {
+.selectedItem-appear.selectedItem-appear-active {
   opacity: 1;
   transform: translateX(0);
   transition: all 1s;
@@ -335,7 +341,7 @@
 }
 
 .Category {
-  margin: 5px;
+  margin: 2px;
   width: 100px;
   height: 100px;
   text-align: center;
@@ -343,7 +349,6 @@
   font-size: 14px;
   background-color: #bea88c;
   border-radius: 5px;
-  box-sizing: border-box;
   color: #ffffff;
 }
 

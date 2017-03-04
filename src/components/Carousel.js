@@ -157,7 +157,6 @@ class Carousel extends Component {
         });
       this.setState(nextState);
     }
-    console.log(this.state)
   }
 
   handleItemChange(event) {

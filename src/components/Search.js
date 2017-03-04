@@ -34,17 +34,15 @@ class Search extends Component {
   render() {
     return (
       <div className="Search">
-        <form onChange={this.handleChange}>
-          <input type="text" name="query" placeholder="Search"/>
-        </form>
-        <div className="CategoryList">
-          <ReactCSSTransitionGroup
-            transitionName="categorylist"
-            transitionEnterTimeout={2000}
-            transitionLeave={false}>
-            {this.state.categorylist.map(category => <Category key={category._id} category={category} />)}
-          </ReactCSSTransitionGroup>
-        </div>
+        <ReactCSSTransitionGroup
+          transitionName="categorylist"
+          transitionEnterTimeout={2000}
+          transitionLeave={false}>
+          <form onChange={this.handleChange}>
+            <input type="text" name="query" placeholder="Search"/>
+          </form>
+          {this.state.categorylist.map(category => <Category key={category._id} category={category} />)}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }
