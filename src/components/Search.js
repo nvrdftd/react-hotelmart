@@ -9,42 +9,39 @@ class Search extends Component {
     super(props);
     this.state = {
       categorylist: [],
-      query: ''
+      text: ''
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   componentDidMount() {
-    let currentStatus = this.state;
+    let nextState = this.state;
     request.get(API_ENDPOINT + '/categorylist')
       .withCredentials()
       .then(res => {
-        currentStatus.categorylist = res.body;
-        this.setState(currentStatus);
+        nextState.categorylist = res.body;
+        this.setState(nextState);
       });
   }
 
-  handleChange(event) {
+  handleSearchChange(event) {
+    let nextState = this.state;
     const target = event.target;
-    let currentStatus = this.state;
-    currentStatus.query = target.value;
-    this.setState(currentStatus);
+    nextState.text = target.value;
+    this.setState(nextState);
   }
 
   render() {
     return (
       <div className="Search">
-        <form onChange={this.handleChange}>
-          <input type="text" name="query" placeholder="Search"/>
-        </form>
-        <div>
-          <ReactTransitionGroup component="div"
-                                transitionName="categorylist"
-                                transitionEnterTimeout={2000}
-                                transitionLeave={false}>
-                                {this.state.categorylist.map(category => <Category key={category._id} category={category} />)}
-          </ReactTransitionGroup>
-        </div>
+        <input type="text" name="text" placeholder="Search" onChange={this.handleSearchChange} />
+        <button className="SearchButton" data-text={this.state.text} onClick={this.props.handleSearchClick}>Search</button>
+        <ReactTransitionGroup component="div"
+                              transitionName="categorylist"
+                              transitionEnterTimeout={3000}
+                              transitionLeave={false}>
+                              {this.state.categorylist.map(category => <Category key={category._id} category={category} handleCategoryClick={this.props.handleCategoryClick}/>)}
+        </ReactTransitionGroup>
       </div>
     );
   }

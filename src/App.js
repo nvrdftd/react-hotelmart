@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import ReactTransitionGroup from 'react-addons-css-transition-group';
+import request from 'superagent';
+import API_ENDPOINT from './config';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Carousel from './components/Carousel';
+import Search from './components/Search';
 
 class App extends Component {
   constructor(props) {
@@ -9,8 +13,21 @@ class App extends Component {
     this.state = {
       isCartToggled: false,
       isSearchToggled: false,
+      items: []
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
+  }
+
+  componentDidMount() {
+    let nextState = this.state;
+    request.get(API_ENDPOINT + '/product/recommended')
+      .withCredentials()
+      .then(res => {
+        nextState.items = res.body.items;
+        this.setState(nextState);
+      });
   }
 
   handleClick(event) {
@@ -36,15 +53,63 @@ class App extends Component {
     this.setState(currentState);
   }
 
+  handleSearchClick(event) {
+    let nextState = this.state;
+    const target = event.target;
+    request.post(API_ENDPOINT + '/product/search')
+      .withCredentials()
+      .send({ text: target.dataset.text })
+      .then(res => {
+        if (res.body.items.length !== 0) {
+          nextState.items = res.body.items;
+        }
+        nextState.isSearchToggled = false;
+        this.setState(nextState);
+      });
+  }
 
+  handleCategoryClick(event) {
+    let nextState = this.state;
+    const target = event.target;
+    request.post(API_ENDPOINT + '/product/search')
+      .withCredentials()
+      .send({ category: target.dataset.category })
+      .then(res => {
+        if (res.body.items.length !== 0) {
+          nextState.items = res.body.items;
+        }
+        nextState.isSearchToggled = false;
+        this.setState(nextState);
+      });
+  }
 
   render() {
+    let search = undefined;
+    if (this.state.isSearchToggled) {
+      function firstChild(props) {
+        const childrenArr = React.Children.toArray(props.children);
+        return childrenArr[0];
+      }
+      search = (
+        <ReactTransitionGroup component={firstChild}
+                              transitionName="search-panel"
+                              transitionAppear={true}
+                              transitionEnter={false}
+                              transitionAppearTimeout={1000}
+                              transitionLeaveTimeout={1000}>
+          <Search handleSearchClick={this.handleSearchClick}
+                  handleCategoryClick={this.handleCategoryClick} />
+        </ReactTransitionGroup>
+      );
+    }
+
+
     return (
       <div className="App">
-        {sessionStorage.setItem('cart', JSON.stringify([]))}
         <Sidebar handleClick={this.handleClick}/>
+        {search}
         <Carousel isCartToggled={this.state.isCartToggled}
-                  isSearchToggled={this.state.isSearchToggled}/>
+                  items={this.state.items} />
       </div>
     );
   }

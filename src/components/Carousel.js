@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import ReactTransitionGroup from 'react-addons-css-transition-group';
 import request from 'superagent';
 import Recommended from './Recommended';
 import Cart from './Cart';
-import Search from './Search';
 import API_ENDPOINT from '../config';
 
 class Carousel extends Component {
@@ -133,7 +131,8 @@ class Carousel extends Component {
       const item = {
         _id: target.dataset._id,
         name: target.dataset.name,
-        quantity: target.dataset.quantity
+        quantity: target.dataset.quantity,
+        img_path: target.dataset.img_path
       };
 
       if (cart.length === 0) {
@@ -190,38 +189,29 @@ class Carousel extends Component {
 
   showWhichComponent() {
     if (this.props.isCartToggled) {
-      return (<Cart handleItemChange={this.handleItemChange}
-                    handleCredentials={this.handleCredentials}
-                    handleUserLogin={this.handleUserLogin}
-                    handleUserSignup={this.handleUserSignup}
-                    isAuthenticated={this.state.isAuthenticated}
-                    loginStatus={this.state.loginStatus}
-                    signupStatus={this.state.signupStatus}
-                    cart={this.state.cart}
-                    username={this.state.username}
-                    password={this.state.password}
-                    lastname={this.state.lastname}
-                    firstname={this.state.fisrtname}
-                    home_address={this.state.home_address}
-                    loginErr={this.state.loginErr}
-                    signupErr={this.state.signupErr} />);
-    } else if (this.props.isSearchToggled) {
-      function firstChild(props) {
-        const childrenArr = React.Children.toArray(props.children);
-        return childrenArr[0];
-      }
       return (
-        <ReactTransitionGroup component={firstChild}
-                              transitionName="search-panel"
-                              transitionAppear={true}
-                              transitionEnter={false}
-                              transitionAppearTimeout={1000}
-                              transitionLeaveTimeout={1000}>
-          <Search />
-        </ReactTransitionGroup>
+        <Cart handleItemChange={this.handleItemChange}
+              handleCredentials={this.handleCredentials}
+              handleUserLogin={this.handleUserLogin}
+              handleUserSignup={this.handleUserSignup}
+              isAuthenticated={this.state.isAuthenticated}
+              loginStatus={this.state.loginStatus}
+              signupStatus={this.state.signupStatus}
+              cart={this.state.cart}
+              username={this.state.username}
+              password={this.state.password}
+              lastname={this.state.lastname}
+              firstname={this.state.fisrtname}
+              home_address={this.state.home_address}
+              loginErr={this.state.loginErr}
+              signupErr={this.state.signupErr} />
+      );
+    } else {
+      return (
+        <Recommended handleAddItem={this.handleAddItem}
+                     items={this.props.items} />
       );
     }
-    return (<Recommended handleAddItem={this.handleAddItem}/>);
   }
 
   render() {
