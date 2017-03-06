@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import SelectQuantity from './SelectQuantity';
-import product_icon from '../product-icon.png';
-
+import API_ENDPOINT from '../config';
 
 class SelectedItem extends Component {
   render() {
     return (
       <div className="Item">
-          <img src={product_icon} alt='ProductIcon' width="80" height="80"/>
-          <section>{this.props.item.name}</section>
-          <section>
-            {this.props.item.category}
-          </section>
-          <SelectQuantity _id={this.props.item._id}
-                          quantity={this.props.item.quantity}
-                          handleItemChange={this.props.handleItemChange} />
+        <table>
+          <tbody>
+            <tr>
+              <td rowSpan="2">
+                <img src={API_ENDPOINT + this.props.item.img_path} alt='ProductIcon' width="80" height="80"/>
+              </td>
+              <td>
+                {this.props.item.name}
+              </td>
+              <td>
+                Quantity
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Descri ptionffff dfdfefdfih dfhdljfd jfid fdfd fdfd fdfd
+              </td>
+              <td>
+                <SelectQuantity _id={this.props.item._id}
+                                quantity={this.props.item.quantity}
+                                handleItemChange={this.props.handleItemChange} />
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
